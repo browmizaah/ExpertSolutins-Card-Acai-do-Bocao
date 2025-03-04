@@ -166,3 +166,32 @@ Preço: R$${item.valor.toFixed(2)}
 const open = abertoFechado();
 infHora.classList.toggle("bg-green-600", open);
 infHora.classList.toggle("bg-red-500", !open);
+
+// Abrir o modal quando a imagem é clicada
+document.querySelectorAll('.product-img').forEach(img => {
+    img.onclick = function() {
+        const modal = document.getElementById("myModal");
+        const modalImg = document.getElementById("modal-img");
+        const modalTitle = document.getElementById("modal-title");
+        const modalDescription = document.getElementById("modal-description");
+        const modalPrice = document.getElementById("modal-price");
+
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        modalTitle.textContent = this.alt;
+        modalDescription.textContent = "Adicionais incluso - Banana, Leite condensado, Leite em pó [Copo da promoção]";
+        modalPrice.textContent = "R$ 12.00";
+    }
+});
+
+// Fechar o modal
+document.querySelector('.close').onclick = function() {
+    document.getElementById("myModal").style.display = "none";
+}
+
+// Fechar o modal quando o usuário clica fora dele
+window.onclick = function(event) {
+    if (event.target == document.getElementById("myModal")) {
+        document.getElementById("myModal").style.display = "none";
+    }
+}
